@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este é um projeto de clone da Amazon desenvolvido utilizando Next.js, Typescript, Stripe Payments, AuthJS Login e Redux-Toolkit. O projeto foi criado seguindo o tutorial do YouTuber Noor Mohammad, no vídeo intitulado "Amazon Clone with Next.js 13.4.8 & Typescript, Stripe Payments, AuthJS Login, Redux-Toolkit [2023]".
+Este é um projeto de clone da Amazon desenvolvido utilizando Next.js, Typescript, Stripe Payments, NextAuth.js e Redux-Toolkit. O projeto foi criado seguindo o tutorial do YouTuber Noor Mohammad, no vídeo intitulado "Amazon Clone with Next.js 13.4.8 & Typescript, Stripe Payments, AuthJS Login, Redux-Toolkit [2023]".
 
 ## Vídeo do Tutorial
 
@@ -13,7 +13,7 @@ O desenvolvimento deste projeto foi baseado no vídeo tutorial de Noor Mohammad.
 - Next.js 13.4.8
 - Typescript
 - Stripe Payments
-- AuthJS Login
+- NextAuth.js
 - Redux-Toolkit
 
 ## Instalação
