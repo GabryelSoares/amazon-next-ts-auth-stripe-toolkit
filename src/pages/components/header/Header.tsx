@@ -44,7 +44,7 @@ export default function Header() {
           <p>Marked</p>
           <p className="text-white font-bold">& Favorite</p>
         </div>
-        <div className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%] relative">
+        <Link href='/cart' className="flex items-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%] relative">
           <Image
             className="w-auto object-cover h-8"
             src={cartIcon}
@@ -54,7 +54,7 @@ export default function Header() {
           <span className="absolute text-amazon_yellow text-sm top-2 left-[29px] font-semibold">
             0
           </span>
-        </div>
+        </Link>
       </div>
     </div>
   );
