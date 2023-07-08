@@ -8,7 +8,7 @@ export default function Home() {
       <Header/>
       <BottomHeader />
       <div className="py-10 bg-gray-300">
-
+        This is the home page
       </div>
       <Footer />
     </main>
