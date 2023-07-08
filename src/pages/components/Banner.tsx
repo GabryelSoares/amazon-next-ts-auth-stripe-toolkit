@@ -18,16 +18,16 @@ export default function Banner() {
         interval={3000}
       >
         <div>
-          <Image src={sliderImg1} alt="slider image 1" />
+          <Image priority src={sliderImg1} alt="slider image 1" />
         </div>
         <div>
-          <Image src={sliderImg2} alt="slider image 2" />
+          <Image priority src={sliderImg2} alt="slider image 2" />
         </div>
         <div>
-          <Image src={sliderImg3} alt="slider image 3" />
+          <Image priority src={sliderImg3} alt="slider image 3" />
         </div>
         <div>
-          <Image src={sliderImg4} alt="slider image 4" />
+          <Image priority src={sliderImg4} alt="slider image 4" />
         </div>
       </Carousel>
       <div className="w-full h-40 bg-gradient-to-t from-gray-100 to-transparent absolute bottom-0 z-20"></div>
