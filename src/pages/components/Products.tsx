@@ -3,6 +3,7 @@ import { ProductProps } from "../../../type";
 import Image from "next/image";
 import { HiShoppingCart } from "react-icons/hi";
 import { FaHeart } from "react-icons/fa";
+import FormattedPrice from "./FormattedPrice";
 
 interface Props {
   productData: ProductProps[];
@@ -45,7 +46,7 @@ export default function Products({ productData }: Props) {
               </div>
               {isNew && (
                 <p className="absolute top-0 right-0 text-amazon_blue font-medium text-xs tracking-wide animate-bounce">
-                  !save {oldPrice - price}
+                  !save <FormattedPrice amount={oldPrice - price}/>
                 </p>
               )}
             </div>
