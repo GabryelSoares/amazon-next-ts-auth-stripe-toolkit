@@ -10,7 +10,7 @@ O desenvolvimento deste projeto foi baseado no vídeo tutorial de Noor Mohammad.
 
 ## Recursos Utilizados
 
-- Next.js 13.4.8
+- Next.js 13.4.9
 - Typescript
 - Stripe Payments
 - NextAuth.js
