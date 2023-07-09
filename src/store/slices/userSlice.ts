@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
-import { ProductProps, StoreProduct } from '../../../type'
+import { ProductProps, StoreProduct, UserInfo } from '../../../type'
 import { useSelector } from 'react-redux'
 
 interface UserState {
   favoriteData: ProductProps[],
-  userInfo: null | string
+  userInfo?: UserInfo
 }
 
 const initialState: UserState = {
   favoriteData: [],
-  userInfo: null
+  userInfo: undefined
 }
 
 export const userSlice = createSlice({
@@ -26,11 +26,11 @@ export const userSlice = createSlice({
         state.favoriteData.push(action.payload)
       }
     },
-    setUserInfo: (state, action: PayloadAction<any>) => {
+    setUserInfo: (state, action: PayloadAction<UserInfo>) => {
       state.userInfo = action.payload
     },
     removeUserInfo: (state) => {
-      state.userInfo = null
+      state.userInfo = undefined
     }
   },
 })

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import logo from "../../../images/logo.png";
 import cartIcon from "../../../images/cartIcon.png";
@@ -7,11 +7,29 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { BiCaretDown } from "react-icons/bi";
 import Link from "next/link";
 import { useCartState } from "@/store/slices/cartSlice";
-import { useUserState } from "@/store/slices/userSlice";
+import { useUserState, userActions } from "@/store/slices/userSlice";
+import { useSession, signIn } from "next-auth/react";
+import { useDispatch } from "react-redux";
 
 export default function Header() {
+  const dispatch = useDispatch();
   const { productData } = useCartState();
-  const { favoriteData } = useUserState();
+  const { favoriteData, userInfo } = useUserState();
+  const { data: session } = useSession();
+
+  useEffect(() => {
+    if (session?.user) {
+      console.log(`session:: `, session);
+      dispatch(
+        userActions.setUserInfo({
+          name: String(session.user.name),
+          email: String(session.user.email),
+          image: String(session.user.image),
+        })
+      );
+    }
+  }, [session]);
+
   return (
     <div className="w-full h-20 bg-amazon_blue text-white text-lightText sticky top-0 z-50">
       <div className="h-full w-full mx-auto inline-flex items-center justify-between gap-1 mdl: gap-3 px-4 ">
@@ -38,15 +56,34 @@ export default function Header() {
             <HiOutlineSearch />
           </span>
         </div>
-        <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">
-          <p>Hello, sign in</p>
-          <p className="text-white font-bold flex items-center">
-            Account & Lists{" "}
-            <span>
-              <BiCaretDown />
-            </span>
-          </p>
-        </div>
+        {userInfo ? (
+          <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">
+            <Image
+              src={userInfo.image}
+              alt="Foto do usuário"
+              className="w-8 h-8 rounded-full object-cover"
+              height={80}
+              width={80}
+            />
+            <div className="text-xs text-gray-100 flex flex-col justify-between">
+              <p className="text-white font-bold">Hello, {userInfo.name}</p>
+              <p>{userInfo.email}</p>
+            </div>
+          </div>
+        ) : (
+          <div
+            onClick={() => signIn()}
+            className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]"
+          >
+            <p>Hello, sign in</p>
+            <p className="text-white font-bold flex items-center">
+              Account & Lists{" "}
+              <span>
+                <BiCaretDown />
+              </span>
+            </p>
+          </div>
+        )}
         <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%] relative">
           <p>Marked</p>
           <p className="text-white font-bold">& Favorite</p>
