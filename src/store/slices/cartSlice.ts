@@ -60,6 +60,9 @@ export const cartSlice = createSlice({
       const updatedData = state.productData.filter(product => product._id !== action.payload)
       state.productData = updatedData;
     },
+    resetCart: (state) => {
+      state.productData = [];
+    },
     setAllProducts: (state, action: PayloadAction<StoreProduct[]>) => {
       state.allProducts = action.payload
     },

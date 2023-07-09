@@ -1,6 +1,8 @@
 import { useCartState } from "@/store/slices/cartSlice";
 import React from "react";
 import CartProduct from "./components/CartProduct";
+import ResetCart from "./components/ResetCart";
+import Link from "next/link";
 
 export default function CartPage() {
   const { productData } = useCartState();
@@ -15,19 +17,24 @@ export default function CartPage() {
               </p>
               <p className="text-lg font-semibold text-amazon_blue">Subtitle</p>
             </div>
-            <div>
+            <div className="pt-2 flex flex-col gap-2">
               {productData.map((item) => (
-                <div className="pt-2 flex flex-col gap-2" key={item._id}>
+                <div key={item._id}>
                   <CartProduct item={item} />
                 </div>
               ))}
+              <ResetCart />
             </div>
           </div>
         </>
       ) : (
-        <div>
-          <h1>Your cart is empty</h1>
-          <button>go to shopping</button>
+        <div className="bg-white h-64 col-span-5 flex flex-col items-center justify-center py-5 rounded-lg shadow-lg">
+          <h1 className="text-lg font-medium">Your cart is empty</h1>
+          <Link href="">
+            <button className="w-52 h-10 bg-amazon_blue text-white rounded-lg text-sm font-semibold hover:bg-amazon_yellow hover:text-black">
+              go to shopping
+            </button>
+          </Link>
         </div>
       )}
     </div>
