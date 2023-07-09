@@ -3,8 +3,7 @@ const nextConfig = {
   cors: {
     origin: [
       "http://localhost:3000/",
-      "https://amazon-next-ts-auth-stripe-toolkit-kypclfodt-gabryelsoares.vercel.app/",
-      "https://amazon-next-ts-auth-stripe-toolkit.vercel.app/",
+      "https://marketplace-next-auth-stripe.vercel.app/",
     ],
     credentials: true,
   },
