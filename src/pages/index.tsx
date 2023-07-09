@@ -1,5 +1,6 @@
 import { ProductProps } from "../../type";
 import Banner from "./components/Banner";
+import FacebookMsg from "./components/FacebookMsg";
 import Products from "./components/Products";
 
 interface Props {
@@ -15,6 +16,7 @@ export default function Home({ productData }: Props) {
           <Products productData={productData} />
         </div>
       </div>
+      <FacebookMsg />
     </main>
   );
 }
