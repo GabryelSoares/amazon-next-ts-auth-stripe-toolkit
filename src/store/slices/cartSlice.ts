@@ -25,9 +25,26 @@ export const cartSlice = createSlice({
         state.productData.push({...action.payload, quantity: 1})
       }
     },
+    decreaseQuantityInCart: (state, action: PayloadAction<number>) => {
+      state.productData.map(i => {
+        if(i._id === action.payload){
+          return {
+            ...i,
+            quantity: i.quantity >= 1 ? i.quantity - 1 : 1
+          }
+        }
+        return i
+      })
+    },
+    increaseQuantityInCart: (state, action: PayloadAction<number>) => {
+      state.productData.map(i => i._id === action.payload ? {...i, quantity: i.quantity + 1} : i)
+    },
+    removeProductFromCart: (state, action: PayloadAction<number>) => {
+      state.productData.filter(product => product._id !== action.payload)
+    },
     setAllProducts: (state, action: PayloadAction<StoreProduct[]>) => {
       state.allProducts = action.payload
-    }
+    },
   },
 })
 

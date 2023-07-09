@@ -41,7 +41,24 @@ export default function Products({ productData }: Props) {
                 alt="product image"
               />
               <div className="w-12 h-24 absolute bottom-10 right-0 border-[1px] border-gray-400 bg-white rounded-md flex flex-col translate-x-20 group-hover:translate-x-0 transition-transform duration-300">
-                <span className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300">
+                <span
+                  onClick={() => {
+                    dispatch(
+                      cartActions.addToCart({
+                        brand,
+                        category,
+                        description,
+                        image,
+                        isNew,
+                        oldPrice,
+                        price,
+                        title,
+                        _id,
+                      })
+                    );
+                  }}
+                  className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300"
+                >
                   <HiShoppingCart />
                 </span>
                 <span
