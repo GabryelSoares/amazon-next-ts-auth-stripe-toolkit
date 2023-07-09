@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
-import { StoreProduct } from '../../../type'
+import { ProductProps, StoreProduct } from '../../../type'
 
 interface UserState {
-  favoriteData: StoreProduct[],
+  favoriteData: ProductProps[],
   userInfo: null | string
 }
 
@@ -17,11 +17,19 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setFavoriteData: (state, action: PayloadAction<any[]>) => {
-      state.favoriteData = action.payload
+    favorite: (state, action: PayloadAction<ProductProps>) => {
+      const existingProduct = state.favoriteData.find(product => product._id === action.payload._id)
+      if(existingProduct){
+        state.favoriteData = state.favoriteData.filter(product => product._id !== action.payload._id)
+      } else {
+        state.favoriteData.push(action.payload)
+      }
     },
     setUserInfo: (state, action: PayloadAction<any>) => {
       state.userInfo = action.payload
+    },
+    removeUserInfo: (state) => {
+      state.userInfo = null
     }
   },
 })

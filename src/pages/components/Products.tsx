@@ -6,6 +6,7 @@ import { FaHeart } from "react-icons/fa";
 import FormattedPrice from "./FormattedPrice";
 import { useDispatch } from "react-redux";
 import { cartActions } from "@/store/slices/cartSlice";
+import { userActions } from "@/store/slices/userSlice";
 
 interface Props {
   productData: ProductProps[];
@@ -43,7 +44,24 @@ export default function Products({ productData }: Props) {
                 <span className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300">
                   <HiShoppingCart />
                 </span>
-                <span className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300">
+                <span
+                  onClick={() =>
+                    dispatch(
+                      userActions.favorite({
+                        brand,
+                        category,
+                        description,
+                        image,
+                        isNew,
+                        oldPrice,
+                        price,
+                        title,
+                        _id,
+                      })
+                    )
+                  }
+                  className="w-full h-full border-b-[1px] border-b-gray-400 flex items-center justify-center text-xl bg-transparent hover:bg-amazon_yellow cursor-pointer duration-300"
+                >
                   <FaHeart />
                 </span>
               </div>
