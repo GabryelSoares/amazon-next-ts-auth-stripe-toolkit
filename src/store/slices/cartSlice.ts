@@ -19,29 +19,46 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action: PayloadAction<ProductProps>) => {
-      const existingProduct = state.productData.find(product => product._id === action.payload._id)
-      if(existingProduct){
-        existingProduct.quantity += 1
+      const { productData } = state;
+      const newItem = action.payload;
+      const existingItem = productData.find(item => item._id === newItem._id);
+      if (existingItem) {
+        const updatedCartItems = productData.map(item => {
+          if (item._id === existingItem._id) {
+            return {
+              ...item,
+              quantity: item.quantity + 1
+            };
+          }
+          return item;
+        });
+        state.productData = updatedCartItems
       } else {
-        state.productData.push({...action.payload, quantity: 1})
+        state.productData = [...productData, { ...newItem, quantity: 1 }]
       }
     },
     decreaseQuantityInCart: (state, action: PayloadAction<number>) => {
-      state.productData.map(i => {
-        if(i._id === action.payload){
+      const updatedCartItems = state.productData.map(item => {
+        if (item._id === action.payload) {
+          const newQuantity = item.quantity >= 1 ? item.quantity - 1 : 0;
           return {
-            ...i,
-            quantity: i.quantity >= 1 ? i.quantity - 1 : 1
-          }
+            ...item,
+            quantity: newQuantity
+          };
         }
-        return i
-      })
+        return item;
+      });
+    
+      const filteredCartItems = updatedCartItems.filter(i => i.quantity !== 0);
+      state.productData = filteredCartItems;
     },
     increaseQuantityInCart: (state, action: PayloadAction<number>) => {
-      state.productData.map(i => i._id === action.payload ? {...i, quantity: i.quantity + 1} : i)
+      const updatedData = state.productData.map(i => i._id === action.payload ? {...i, quantity: i.quantity + 1} : i)
+      state.productData = updatedData;
     },
     removeProductFromCart: (state, action: PayloadAction<number>) => {
-      state.productData.filter(product => product._id !== action.payload)
+      const updatedData = state.productData.filter(product => product._id !== action.payload)
+      state.productData = updatedData;
     },
     setAllProducts: (state, action: PayloadAction<StoreProduct[]>) => {
       state.allProducts = action.payload
