@@ -57,7 +57,7 @@ export default function Header() {
           </span>
         </div>
         {userInfo ? (
-          <div className="text-xs text-gray-100 flex flex-col justify-center px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">
+          <div className="text-xs text-gray-100 flex items-center justify-center gap-2 px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">
             <Image
               src={userInfo.image}
               alt="Foto do usuário"
