@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 import { ProductProps, StoreProduct } from '../../../type'
+import { useSelector } from 'react-redux'
 
 interface UserState {
   favoriteData: ProductProps[],
@@ -38,4 +39,6 @@ export const userActions = userSlice.actions
 
 export const userReducer = userSlice.reducer
 
-export const useUserState = (state: RootState) => state.user
+export const useUserState = () => {
+  return useSelector((state: RootState) => state.user);
+};

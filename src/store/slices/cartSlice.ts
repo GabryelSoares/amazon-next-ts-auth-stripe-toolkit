@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store'
 import { ProductProps, StoreProduct } from '../../../type'
+import { useSelector } from 'react-redux'
 
 interface CartState {
   productData: StoreProduct[],
@@ -52,4 +53,6 @@ export const cartActions = cartSlice.actions
 
 export const cartReducer = cartSlice.reducer
 
-export const useCartState = (state: RootState) => state.cart
+export const useCartState = () => {
+  return useSelector((state: RootState) => state.cart);
+};
