@@ -2,10 +2,10 @@
 import React from 'react'
 import { FacebookProvider, CustomChat } from 'react-facebook';
 
-export default function FacebookMsg() {
+export default function FacebookChat() {
   return (
     <FacebookProvider appId="297044169365979" chatSupport>
-      <CustomChat pageId="114332774494623" minimized={true}/>
+      <CustomChat pageId="104003389429973" minimized={true}/>
     </FacebookProvider>    
   )
 }
