@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductProps } from "../../../type";
+import { ProductProps } from "../../type";
 import Image from "next/image";
 import { HiShoppingCart } from "react-icons/hi";
 import { FaHeart } from "react-icons/fa";

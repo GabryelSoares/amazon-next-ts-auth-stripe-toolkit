@@ -1,10 +1,10 @@
 import Image from "next/image";
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
-import sliderImg1 from "../../images/slider/sliderImg_1.jpg";
-import sliderImg2 from "../../images/slider/sliderImg_2.jpg";
-import sliderImg3 from "../../images/slider/sliderImg_3.jpg";
-import sliderImg4 from "../../images/slider/sliderImg_4.jpg";
+import sliderImg1 from "../images/slider/sliderImg_1.jpg";
+import sliderImg2 from "../images/slider/sliderImg_2.jpg";
+import sliderImg3 from "../images/slider/sliderImg_3.jpg";
+import sliderImg4 from "../images/slider/sliderImg_4.jpg";
 
 export default function Banner() {
   return (

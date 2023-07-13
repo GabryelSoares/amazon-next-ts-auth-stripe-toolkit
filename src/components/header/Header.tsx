@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
-import logo from "../../../images/logo.png";
-import cartIcon from "../../../images/cartIcon.png";
+import logo from "../../images/logo.png";
+import cartIcon from "../../images/cartIcon.png";
 import { SlLocationPin } from "react-icons/sl";
 import { HiOutlineSearch } from "react-icons/hi";
 import { BiCaretDown } from "react-icons/bi";
