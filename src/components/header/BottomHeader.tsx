@@ -1,7 +1,7 @@
 import { useUserState, userActions } from "@/store/slices/userSlice";
 import React from "react";
 import { LuMenu } from "react-icons/lu";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useDispatch } from "react-redux";
 
 export default function BottomHeader() {

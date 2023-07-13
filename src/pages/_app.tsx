@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import RootLayout from "./components/RootLayout";
+import RootLayout from "../components/RootLayout";
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";

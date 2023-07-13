@@ -1,9 +1,9 @@
 import { useCartState } from "@/store/slices/cartSlice";
 import React from "react";
-import CartProduct from "./components/CartProduct";
-import ResetCart from "./components/ResetCart";
+import CartProduct from "../components/CartProduct";
+import ResetCart from "../components/ResetCart";
 import Link from "next/link";
-import CartPayment from "./components/CartPayment";
+import CartPayment from "../components/CartPayment";
 
 export default function CartPage() {
   const { productData } = useCartState();

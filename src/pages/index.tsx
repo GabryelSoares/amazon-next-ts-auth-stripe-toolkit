@@ -1,7 +1,7 @@
 import { ProductProps } from "../../type";
-import Banner from "./components/Banner";
-import FacebookChat from "./components/FacebookChat";
-import Products from "./components/Products";
+import Banner from "../components/Banner";
+import FacebookChat from "../components/FacebookChat";
+import Products from "../components/Products";
 
 interface Props {
   productData: ProductProps[];
