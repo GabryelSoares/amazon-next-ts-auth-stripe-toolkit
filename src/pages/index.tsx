@@ -1,13 +1,22 @@
+import { useDispatch } from "react-redux";
 import { ProductProps } from "../../type";
 import Banner from "../components/Banner";
 import FacebookChat from "../components/FacebookChat";
 import Products from "../components/Products";
+import { useEffect } from "react";
+import { cartActions } from "@/store/slices/cartSlice";
 
 interface Props {
   productData: ProductProps[];
 }
 
 export default function Home({ productData }: Props) {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(cartActions.setAllProducts(productData));
+  }, [productData]);
+
   return (
     <main>
       <div className="max-w-screen-2xl mx-auto">

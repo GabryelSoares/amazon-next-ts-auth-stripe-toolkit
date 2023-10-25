@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../images/logo.png";
 import cartIcon from "../../images/cartIcon.png";
@@ -10,12 +10,18 @@ import { useCartState } from "@/store/slices/cartSlice";
 import { useUserState, userActions } from "@/store/slices/userSlice";
 import { useSession, signIn } from "next-auth/react";
 import { useDispatch } from "react-redux";
+import { ProductProps, StoreProduct } from "../../../type";
 
 export default function Header() {
   const dispatch = useDispatch();
-  const { productData } = useCartState();
+  const { productData, allProducts } = useCartState();
   const { favoriteData, userInfo } = useUserState();
   const { data: session } = useSession();
+  const [allData, setAllData] = useState<ProductProps[]>([]);
+
+  useEffect(() => {
+    setAllData([...allProducts]);
+  }, [productData]);
 
   useEffect(() => {
     if (session?.user) {
@@ -29,6 +35,20 @@ export default function Header() {
       );
     }
   }, [session]);
+
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([]);
+
+  const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  }, []);
+
+  useEffect(() => {
+    const filtered = allData.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [searchQuery]);
 
   return (
     <div className="w-full h-20 bg-amazon_blue text-white text-lightText sticky top-0 z-50">
@@ -48,6 +68,8 @@ export default function Header() {
         </div>
         <div className="flex-1 h-10 hidden md:inline-flex items center justify-between relative">
           <input
+            onChange={handleSearch}
+            value={searchQuery}
             className="w-full h-full rounded-md px-2 placeholder:text-sm text-base text-black border-[3px] border-transparend outline-none focus-visible:border-amazon_yellow"
             type="text"
             placeholder="Search products"
@@ -55,6 +77,23 @@ export default function Header() {
           <span className="w-12 h-full bg-amazon_yellow text-black text-2xl flex items-center justify-center absolute right-0 rounded-tr-md rounded-br-md">
             <HiOutlineSearch />
           </span>
+          {searchQuery && (
+            <div className="absolute left-0 top-12 w-full mx-auto max-h-96 bg-gray-200 rounded-lg overflow-y-scroll cursor-pointer text-black">
+              {filteredProducts.length > 0 ? (
+                <div>
+                  {filteredProducts.map((item) => (
+                    <div key={item._id}>
+                      <p>{item.title}</p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div>
+                  <p>no products</p>
+                </div>
+              )}
+            </div>
+          )}
         </div>
         {userInfo ? (
           <div className="text-xs text-gray-100 flex items-center justify-center gap-2 px-2 border border-transparent hover:border-white cursor-pointer duration-300 h-[70%]">

@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 interface CartState {
   productData: StoreProduct[],
-  allProducts: StoreProduct[],
+  allProducts: ProductProps[],
 }
 
 const initialState: CartState = {
@@ -63,7 +63,7 @@ export const cartSlice = createSlice({
     resetCart: (state) => {
       state.productData = [];
     },
-    setAllProducts: (state, action: PayloadAction<StoreProduct[]>) => {
+    setAllProducts: (state, action: PayloadAction<ProductProps[]>) => {
       state.allProducts = action.payload
     },
   },
